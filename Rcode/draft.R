@@ -116,20 +116,34 @@ for (i in 1:N) {
 grid.arrange(grobs = plots, ncol = N)
 
 
-# Plot the open access equilibrium on top of the options
-Bounds <- matrix(nrow=N, ncol=2)
-
+# Calculate Bounds
+Bounds <- matrix(NA, N, 2)
 for (i in 1:N) {
-  subplot <- data.frame(H_vec, Benefit[i,])
-  colnames(subplot) <- c("H_vec", "Benefit")
-  p <- ggplot(subplot, aes(x = H_vec, y = Benefit)) +
-    geom_line(size = 2) +
-    geom_hline(aes(yintercept = OA_Benefit[i]), linetype = "dashed", color = "black")
   F <- which(Benefit[i,] > OA_Benefit[i])
-  
-  if(length(F) != 0){
-    Bounds[i,] <- c(min(H_vec[F]), max(H_vec[F]))
+  if (length(F) > 0) {
+    Bounds[i,] <- H_vec[c(min(F), max(F))]
   }
-  
-  print(p)
 }
+
+# Create a new data frame for the second plot
+df_bounds <- data.frame(Weights = w, Bounds_low = Bounds[,1], Bounds_high = Bounds[,2])
+
+# Create the second plot
+# Convert Weights to factor
+df_bounds$Weights <- as.factor(df_bounds$Weights)
+
+p2 <- ggplot(df_bounds, aes(y = Weights)) +
+  geom_segment(aes(x = Bounds_low, xend = Bounds_high, yend = Weights), size = 1, color = "blue") +
+  geom_vline(aes(xintercept = sum(OA_h)), linetype = "dashed", color = "red", size = 0.5) +
+  coord_cartesian(xlim = c(0, max(H_vec))) +
+  theme_minimal() +
+  theme(legend.position = "none", 
+        plot.margin = margin(10, 10, 10, 10, "pt"),  
+        panel.background = element_rect(fill = NA, colour = "black"), 
+        panel.grid.major.x = element_blank(), 
+        panel.grid.major.y = element_blank(),
+        panel.grid.minor = element_blank()) +
+  xlab(NULL) +  
+  ylab(NULL)
+
+print(p2)

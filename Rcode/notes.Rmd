@@ -1,0 +1,35 @@
+---
+title: "Effect of consensus in RFMOs"
+author: "Irina Lerner"
+date: "2023-6-11"
+bibliography: references.bib
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE, echo=F}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+source("library.R")
+```
+
+Fishing is an essential economic activity for many communities. When fishing, the fishery has to be mindful, because over fishing in one season can lead to a decrease in the total number of fish in the next one. Since the fish is a finite resource, if there is more than one fishery in an area, they will compete for the resource.
+
+This competition can be modeled with a game theoretical approach. Solving the system for Nash equilibrium, we find that if the fisheries are left alone to compete, they will quickly deplete the resources. Many fisheries suffered from this depletion over the last decades, causing great problems both economical and environmental (@jackson_historical_2001).
+
+While some fisheries are regional and fish in local waters, others are bigger, and fish in international waters.
+
+
+Regional Fisheries Management Organization (RFMO) is an international entity established by countries with fishing interests in an area, who are parties to a specific agreement or treaty. RFMOs have management powers to establish fishing opportunities and conservation measures, and are a primary mechanism for managing shared fishery resources in international waters.
+
+RFMOs typically aim to achieve sustainable fisheries, protect the marine environment, and promote data collection and scientific research. RFMOs include member and cooperating non-member countries and areas, and their decisions and recommendations are usually binding for their members.
+
+Decision-making in RFMOs can vary between organizations, but many adopt a consensus-based approach. This means that decisions (which may concern setting catch limits, adopting conservation measures, enforcing regulations, etc.) are made collectively by all members and are generally only taken when every member agrees to the decision. This consensus approach aims to ensure all members have a say in the decision-making process and are in agreement with the outcomes.
+
+However, reaching consensus can be challenging when there are different interests and priorities among members. For instance, some countries might prioritize economic benefits of fisheries, while others might prioritize conservation. If a single member does not agree with a proposed decision, it can block or delay the process. This can lead to situations where necessary conservation actions are not taken, or are watered down to reach consensus, thereby threatening the sustainability of the fishery resources.
+
+In summary, while the consensus approach has the benefit of giving all members a say, it can also lead to decision-making difficulties, especially when dealing with complex and contentious issues such as fishery management and conservation.
+
+# Model
+
+# References
