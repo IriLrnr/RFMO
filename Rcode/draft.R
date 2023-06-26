@@ -92,7 +92,7 @@ for (hh in 2:length(H_vec)) {
   Benefit[,hh] <- UtilityFunction(Profits[,hh], Conserv[hh], w)
 }
 
-# Plot the benefit function for each countryx'
+# Plot the benefit function for each country'
 
 plots <- list()
 for (i in 1:N) {

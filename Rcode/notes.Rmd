@@ -13,23 +13,71 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 source("library.R")
 ```
 
-Fishing is an essential economic activity for many communities. When fishing, the fishery has to be mindful, because over fishing in one season can lead to a decrease in the total number of fish in the next one. Since the fish is a finite resource, if there is more than one fishery in an area, they will compete for the resource.
+Fishing is an essential economic and social activity for many communities. When fishing, the fishery has to be mindful, because over fishing in one season can lead to a decrease in the total number of fish in the next one. Since the fish is a finite resource, if there is more than one fishery in an area, they will compete for the resource. Many fisheries suffered from depletion of stock over the last decades, causing great problems both economical and environmental (@jackson_historical_2001).
 
-This competition can be modeled with a game theoretical approach. Solving the system for Nash equilibrium, we find that if the fisheries are left alone to compete, they will quickly deplete the resources. Many fisheries suffered from this depletion over the last decades, causing great problems both economical and environmental (@jackson_historical_2001).
+Game theory proved an insightful tool when modeling fisheries (@gronbaek_game_2018). The competition can be modeled with a game theoretical approach. Solving the system for Nash equilibrium, we find that if fisheries are left alone to compete, they will overfish the stock (bailey_application_2010).
 
-While some fisheries are regional and fish in local waters, others are bigger, and fish in international waters.
+Regional Fisheries Management Organizations (RFMOs) are international entities established by countries with fishing interests in an area, who are parties to a specific agreement or treaty. While some fisheries are local and have to be managed internally, others work on international waters, and have to be managed by international entities (REF).
 
+RFMOs have management powers to establish fishing opportunities and conservation measures. In their agreements, they decide on how much to fish from the stock available in their management area, and a share of this available stock for each party in the agreement. typically, RMFOs aim to achieve sustainability, protect the marine environment, and also promote data collection and scientific research. 
 
-Regional Fisheries Management Organization (RFMO) is an international entity established by countries with fishing interests in an area, who are parties to a specific agreement or treaty. RFMOs have management powers to establish fishing opportunities and conservation measures, and are a primary mechanism for managing shared fishery resources in international waters.
+RFMOs include member and cooperating non-member countries and areas, and their decisions and recommendations are usually binding for their members. Decision-making in RFMOs can vary between organizations. RFMOs have members and cooperating non-members countries and areas, and their decisions and recommendations are usually binding for the whole group.Many RFMOs adopt measures based on a certain required percentage of agreement or acceptance among the members. Normally, decisions are made by majority, supermajority, consensus minus one and consensus.
 
-RFMOs typically aim to achieve sustainable fisheries, protect the marine environment, and promote data collection and scientific research. RFMOs include member and cooperating non-member countries and areas, and their decisions and recommendations are usually binding for their members.
+Reaching consensus can be challenging when there are different interests and priorities among members. For instance, some countries might prioritize economic benefits of fisheries, while others might prioritize conservation. If a single member does not agree with a proposed decision, it can block or delay the process. This can lead to situations where necessary conservation actions are not taken, or are watered down to reach consensus, thereby threatening the sustainability of the fishery resources. While the consensus approach has the benefit of giving all members a say, it can also lead to decision-making difficulties, especially when dealing with complex and contentious issues such as fishery management and conservation.
 
-Decision-making in RFMOs can vary between organizations, but many adopt a consensus-based approach. This means that decisions (which may concern setting catch limits, adopting conservation measures, enforcing regulations, etc.) are made collectively by all members and are generally only taken when every member agrees to the decision. This consensus approach aims to ensure all members have a say in the decision-making process and are in agreement with the outcomes.
-
-However, reaching consensus can be challenging when there are different interests and priorities among members. For instance, some countries might prioritize economic benefits of fisheries, while others might prioritize conservation. If a single member does not agree with a proposed decision, it can block or delay the process. This can lead to situations where necessary conservation actions are not taken, or are watered down to reach consensus, thereby threatening the sustainability of the fishery resources.
-
-In summary, while the consensus approach has the benefit of giving all members a say, it can also lead to decision-making difficulties, especially when dealing with complex and contentious issues such as fishery management and conservation.
+An example of a consensus based fishery organization is CCMLAR, The Convention for the Conservation of Antarctic Marine Living Resources. It is a multinational organization dedicated to the conservation and management of marine life in the Southern Ocean. Formed in 1982 under the Antarctic Treaty System, CCAMLR operates on the principle of ecosystem-based management, seeking to maintain the ecological relationships between harvested, dependent, and related populations of Antarctic marine living resources. With 26 Member countries and the EU, the organization plays a crucial role in conducting scientific research, enforcing sustainable fishing practices, and implementing protective measures against threats. It is regarded as a global leader in the management of marine resources.
 
 # Model
+
+The fish population (n) varies in time according to the following equation:
+
+\[ \frac{dn}{dt} = rn(1-n) - Hn\]
+
+where $r$ if the growth rate of the population, and $H$ is the harvest rate.
+
+\[H = \sum_{i=1}^{N}h_i\]
+
+it is the sum of harvest rates for every country fishing in the area.
+
+At equilibrium, the size of the population is $n^*$
+
+\[n^* = 1 - \frac{H}{r}\]
+
+The Yield of the system is given by
+
+\[Y = Hn^* = 1 - H\bigg(\frac{H}{r}\bigg) \]
+
+This equation is solved by H*, optimal harvest rate.
+
+\[\frac{dY}{dt} = 0\\
+  1-\frac{2H^*}{r} = 0\\
+  H^* = \frac{r}{2}\]
+  
+Then, the Maximum Sustainable Yield (MSY) is $Y^*$. 
+
+\[Y^* = \frac{r}{4}\]
+
+Each country harvest $h_i = H^*/N$, resulting in an individual MSY yield of 
+\[y_i^* = \frac{r}{4N}\]
+
+This would be optimal conditions, where everybody collaborates and decide to harvest $H^*$. When there is two players, for example, they will compete. This situation also doesn't take into account that the benefit each country has it's not only measured in yield.
+
+Assuming then the benefit a country obtains from fishing is related not to yield, but to profit and conservation in different proportions, we can write a benefit function
+
+\[B = C^w - P^{(1-w)}\]
+
+where
+
+\[C = R(e^{(2n)}-1)\]
+
+and 
+\[P = \sum_{i = 1}^n p_i\\
+p_i = y_i - ch_i\]
+
+Assuming a group with $N = 6$, with different set of parameter values, we can simulate what their profit function would look like
+
+```{R simulate_pop}
+SimulatePop(6)
+```
 
 # References
