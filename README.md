@@ -1,2 +1,2 @@
 # RFMOconsensus
-This is a repository for a project analyzing consensus decision-making in fisheries
+This is a repository for a project analysing consensus decision-making in fisheries
