@@ -51,3 +51,5 @@ rsconnect/
 # ignore pycache
 src/__pycache__/*
 
+# ignore .asv from matlab
+.asv
